@@ -3,7 +3,9 @@
 // Start here
 $(document).ready(function () {
     manageWebsiteRouting(window.location.href);
-    
+    loadRandomHighlight();
+    showCookieNotice();
+
     $("nav a").on('click', function () {  
         activateNavigationMenuItem($(this).attr('data-partialview'));
         templates[$(this).attr('data-partialview')].preSwitchTemplate(); 

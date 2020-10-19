@@ -15,6 +15,10 @@ function isTeachingURL(url) {
     return url.indexOf("#/teaching") > 0;
 }
 
+function isBooksURL(url) {
+    return url.indexOf("#/books") > 0;
+}
+
 function isAboutURL(url) {
     return url.indexOf("#/") > 0;
 }
@@ -32,6 +36,9 @@ function manageWebsiteRouting(url) {
     }
     else if (isSpeakingURL(url)) {
         templates["speakingPartial"].preSwitchTemplate(); 
+    }
+    else if (isBooksURL(url)) {
+        templates["booksPartial"].preSwitchTemplate();
     }
     else {
         templates["introPartial"].preSwitchTemplate();  

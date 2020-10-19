@@ -11,14 +11,14 @@ function loadProjectItems(url, key) {
     if (localValue === "" || localValue === null) {
         $.get(url, function (data) {
             getProjectItems(data.fileMap, key);
-            searchControlViewPreSwitchTemplate();
+            searchControlViewPreSwitchTemplate({ showInactive: true });
         });
     }
     else {
         var filter = { searchText: "", showInactive: false };
         localValue = applySearchFilter(filter, localValue);
         switchTemplate("projectsRepeaterPartial", localValue);
-        searchControlViewPreSwitchTemplate();
+        searchControlViewPreSwitchTemplate({ showInactive: true });
     }    
 }
 
@@ -30,7 +30,9 @@ function getProjectItems(data, key) {
     allProjectData.projects = allProjectData.projects.reverse();
     allProjectData.expiresOn = getExpiryTime();
     storeDataLocally(key, allProjectData); 
-    switchTemplate("projectsRepeaterPartial", allProjectData);
+
+    var filteredProjectItemData = applySearchFilter(getSearchFilter(), allProjectData); 
+    switchTemplate("projectsRepeaterPartial", filteredProjectItemData);
 }
 
 function filterAndDisplayProjectItems(filter, searchControlParentView) {
@@ -46,43 +48,18 @@ function filterAndDisplayProjectItems(filter, searchControlParentView) {
 function applySearchFilter(searchFilter, projectItemData) {
     var allProjectData = { projects: [] };
 
-    var applyCategoryFilter = function (currentProject) {
-        var isTechOptionsEmpty = searchFilter.techOptions === null || searchFilter.techOptions === undefined || searchFilter.techOptions.length === 0;
-        var isCategoryOptionsEmpty = searchFilter.categoryOptions === null || searchFilter.categoryOptions === undefined || searchFilter.categoryOptions.length === 0;
-
-        if (isTechOptionsEmpty && isCategoryOptionsEmpty) {
-            // If the search filters are empty, we want to show the project item
-            return true;
-        }
-
-        var projectMeetsTechOptionsFilter = function () {
-            if (isTechOptionsEmpty) return true;
-            for (var to = 0; to < currentProject.madeUsing.length; to++) {
-                if (searchFilter.techOptions.includes(currentProject.madeUsing[to])) {
-                    return true;
-                }
-            }
-            return false;
-        };
-        var projectMeetsCategoryOptionsFilter = function () {
-            if (isCategoryOptionsEmpty) return true; 
-            return searchFilter.categoryOptions.includes(currentProject.category);
-        }; 
-        return projectMeetsTechOptionsFilter() && projectMeetsCategoryOptionsFilter();
-    };
-
     for (var i = 0; i < projectItemData.projects.length; i++) {
+        var currentProject = projectItemData.projects[i];
+        var applyInactiveSearchFilter = searchFilter.showInactive
+            || currentProject.isActive === undefined || currentProject.isActive;
+        var applySearchTextFilter = isSearchTextFilterInvalid()
+            || currentProject.title.toLowerCase().indexOf(searchFilter.searchText) > -1;
 
-        if (projectItemData.projects[i].title.toLowerCase().indexOf(searchFilter.searchText) > -1) {
-            var inactiveSearchFilter = searchFilter.showInactive || projectItemData.projects[i].isActive === undefined || projectItemData.projects[i].isActive;
-            
-            if (inactiveSearchFilter) { 
-                if (!applyCategoryFilter(projectItemData.projects[i])) {
-                    continue;
-                } 
-                allProjectData.projects.push(projectItemData.projects[i]);
-            }      
-        }
+        //console.log(isSearchTextFilterInvalid(), applySearchTextFilter);
+
+        if (applyInactiveSearchFilter && applySearchTextFilter) { 
+            allProjectData.projects.push(projectItemData.projects[i]);
+        } 
     }
 
     return allProjectData;
@@ -92,9 +69,9 @@ function redirectToProjectDetails(projectID, relativeURL, projectTitle) {
     var projectURL = doesProjectIDContainPin(projectID) ? projectID.replace(".pin.md", "") : projectID.replace(".md", "");
     var projectDetailsOutput = {
         data: "https://raw.githubusercontent.com/clydedsouza/clydedsouza-web-api/gh-pages" + relativeURL,
-        projectTitle: projectTitle
+        projectTitle: decodeURI(projectTitle)
     };
-    switchTemplate("projectDetailsPartial",  projectDetailsOutput );
+    switchTemplate("projectDetailsPartial", projectDetailsOutput);
     window.location.href = "/#/portfolio/" + projectURL; 
 }
 

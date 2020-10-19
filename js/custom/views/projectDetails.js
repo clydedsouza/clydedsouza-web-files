@@ -15,7 +15,7 @@ function projectDetailsViewPreSwitchTemplate(url) {
             var sourceBase = portfolioItems.projects[i].sourceBase; 
             var basename = doesProjectIDContainPin(sourceBase) ? sourceBase.replace(".pin.md", "") : sourceBase.replace(".md", "");
             if (projectID === basename) {
-                redirectToProjectDetails(projectID, portfolioItems.projects[i].relativeURL, portfolioItems.projects[i].title);
+                redirectToProjectDetails(projectID, portfolioItems.projects[i].relativeURL, encodeURI(portfolioItems.projects[i].title));
                 break;
             } 
         }

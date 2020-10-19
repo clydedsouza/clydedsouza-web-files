@@ -5591,7 +5591,7 @@ main {
     columns: 1; } }
 
 #pinnedProjectsList section {
-  width: 45%;
+  width: 29.89vw;
   display: inline-block;
   border-radius: 5px;
   color: #fff;
@@ -5599,16 +5599,20 @@ main {
   transition: 0.4s ease-in-out;
   transform: scale(1);
   padding: 0px;
-  margin: 2vh 1.5vw 2vh 0;
+  margin: 2vh 1.09vw 2vh 0;
   background: linear-gradient(155deg, rgba(0, 150, 136, 0.878431), rgba(16, 152, 75, 0.941176));
   vertical-align: top;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
+  @media (orientation: portrait) {
+    #pinnedProjectsList section {
+      width: 47.8%;
+      margin: 2vh 1.09vw 0.5vh 0; } }
   @media (max-width: 630px) {
     #pinnedProjectsList section {
       width: 99%; } }
   @media (min-width: 631px) and (max-width: 799px) {
     #pinnedProjectsList section {
-      width: 46%; } }
+      width: 48.5%; } }
   #pinnedProjectsList section:hover {
     border: 1px solid transparent;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -5677,7 +5681,7 @@ main {
       margin: 9px 0 0 0;
       font-weight: 100; }
     #pinnedProjectsList section .project-body div:last-child {
-      margin: 9px 0 18px 0; }
+      margin: 9px 0 0 0; }
       #pinnedProjectsList section .project-body div:last-child div.col-xs-8.text-left {
         padding-left: 0; }
         #pinnedProjectsList section .project-body div:last-child div.col-xs-8.text-left a {
@@ -5686,7 +5690,7 @@ main {
           padding: 9px 16px 6px 1px;
           border-radius: 6px;
           display: inline-block;
-          margin: 2px 0 0 0;
+          margin: 2px 0 9px 0;
           text-decoration: none;
           transition: all 0.2s linear 0.2s; }
           #pinnedProjectsList section .project-body div:last-child div.col-xs-8.text-left a:hover, #pinnedProjectsList section .project-body div:last-child div.col-xs-8.text-left a:focus {
@@ -5712,9 +5716,21 @@ main {
         @content;
     }
 }*/
-.project-details-view h2 i {
-  -webkit-text-fill-color: #009688;
-  color: #009688; }
+.project-details-view {
+  padding-bottom: 18px; }
+  .project-details-view i {
+    -webkit-text-fill-color: #009688;
+    color: #009688;
+    margin-right: 9px;
+    font-size: smaller;
+    transition: all 0.2s linear 0.2s; }
+    .project-details-view i:hover, .project-details-view i:focus {
+      opacity: 0.8; }
+  .project-details-view #projectDetailsContainer h2 {
+    font-size: 26px;
+    color: rgba(10, 10, 10, 0.6);
+    background: transparent;
+    -webkit-text-fill-color: rgba(10, 10, 10, 0.6); }
 
 /*@mixin for-legacy-mobiles-down {
     @media (max-width: (($screen-tablets-up)/2)-1) {
@@ -5789,7 +5805,8 @@ main {
 
 #sidebar .sidebar-icons {
   font-size: 18px;
-  font-weight: 100; }
+  font-weight: 100;
+  margin: 0.5vh 0 3vh 0; }
   #sidebar .sidebar-icons span {
     margin: 1vh 0px; }
     #sidebar .sidebar-icons span a:hover, #sidebar .sidebar-icons span a:focus {
@@ -5803,6 +5820,22 @@ main {
           margin: 0 3vw; } }
       #sidebar .sidebar-icons span i:first-child {
         margin-left: 0; }
+
+#sidebar .sidebar-highlights {
+  background-color: rgba(255, 255, 0, 0.1);
+  border-radius: 6px;
+  padding: 9px 6px 3px 13px; }
+  #sidebar .sidebar-highlights a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s linear 0.2s;
+    border-bottom: 0; }
+    #sidebar .sidebar-highlights a:hover, #sidebar .sidebar-highlights a:focus {
+      opacity: 0.8;
+      border-bottom: 1px dashed white; }
+  @media (max-width: 799px) {
+    #sidebar .sidebar-highlights {
+      display: none; } }
 
 /*@mixin for-legacy-mobiles-down {
     @media (max-width: (($screen-tablets-up)/2)-1) {
@@ -5824,15 +5857,31 @@ main {
         @content;
     }
 }*/
-#includeInactiveContainer {
+#searchTxt {
+  width: 55vw;
   display: inline-block; }
+  @media (orientation: portrait) {
+    #searchTxt {
+      width: 60.5vw; } }
+  .noinactive + #searchTxt {
+    width: 99%; }
+  @media (max-width: 630px) {
+    #searchTxt {
+      width: 60.5vw; } }
+  @media (min-width: 800px) and (max-width: 1199px) {
+    #searchTxt {
+      width: 46.9vw; } }
+
+#includeInactiveContainer {
+  display: inline-block;
+  max-width: 84px; }
 
 .switch {
   position: relative;
   display: inline-block;
   width: 42px;
   height: 14px;
-  left: -73px;
+  left: 5px;
   top: 2px; }
   .switch input {
     opacity: 0;
@@ -5875,7 +5924,7 @@ main {
   font-size: smaller;
   font-weight: normal;
   position: relative;
-  top: -12px;
+  top: 0;
   font-variant: small-caps;
   text-transform: lowercase;
   margin-left: 4px; }
@@ -5885,71 +5934,53 @@ main {
   -webkit-box-shadow: white;
   box-shadow: inset 0 1px 1px white, 0 0 8px white; }
 
-.dropdown-menu li a:hover, .dropdown-menu li a:focus {
-  border-bottom: none;
-  background-color: #ffff66; }
-
-.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover {
-  background-color: #009688; }
-
-.multiselect-container li a label.checkbox input[type=checkbox] {
-  position: relative;
-  top: 0;
-  left: -8px; }
-  .multiselect-container li a label.checkbox input[type=checkbox]:after {
-    border: 1px solid black;
-    content: "";
-    width: 10px;
-    display: block;
-    opacity: 1;
-    height: 10px;
-    background-color: #009688;
-    float: left;
-    height: 15px;
-    width: 15px;
-    margin-bottom: 15px;
-    border: 0;
-    clear: both;
-    position: relative;
-    left: -1px;
-    top: -1px;
-    transition: all 450ms;
-    border-radius: 3px; }
-
-.multiselect-container li a label.checkbox input[type=checkbox]:checked:after {
-  background-color: #ffff00;
-  border-radius: 30px;
-  transition: all 450ms; }
-
 /*@mixin for-legacy-mobiles-down {
     @media (max-width: (($screen-tablets-up)/2)-1) {
         @content;
     }
 }*/
+.cookie-notice {
+  padding: 10px 6px 0 6px;
+  color: white;
+  background: linear-gradient(155deg, rgba(0, 150, 136, 0.878431), rgba(16, 152, 75, 0.941176));
+  background-color: #009688;
+  position: -webkit-sticky;
+  position: fixed;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 2000000001 !important; }
+  .cookie-notice a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer; }
+
 footer {
   width: 100%;
-  padding: 18px 0;
+  padding: 9px 0 18px 0;
   text-align: center; }
   footer a {
     color: rgba(10, 10, 10, 0.6) !important;
     text-decoration: none;
     font-family: 'Questrial', sans-serif;
     font-weight: bold; }
-
-.fb-msg-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px; }
-  .fb-msg-button a {
-    background: linear-gradient(155deg, rgba(0, 150, 136, 0.878431), rgba(16, 152, 75, 0.941176));
-      background-size: cover;
-      background-repeat: no-repeat;
-    padding: 19px 13px 17px 13px;
-    border-radius: 120px; }
-    .fb-msg-button a i {
-      color: white;
-      font-size: 29px;
-      vertical-align: sub; }
+  footer .footer-highlights {
+    background-color: rgba(255, 255, 0, 0.1);
+    border-radius: 6px;
+    padding: 9px 6px 3px 13px;
+    display: none;
+    margin: 0 0 9px 0; }
+    footer .footer-highlights a {
+      text-decoration: none;
+      transition: all 0.2s linear 0.2s;
+      border-bottom: 0; }
+      footer .footer-highlights a:hover, footer .footer-highlights a:focus {
+        opacity: 0.8;
+        border-bottom: 1px dashed rgba(10, 10, 10, 0.6); }
+    @media (max-width: 799px) {
+      footer .footer-highlights {
+        display: block; } }
 
 /*@mixin for-legacy-mobiles-down {
     @media (max-width: (($screen-tablets-up)/2)-1) {
@@ -6007,8 +6038,10 @@ nav {
     background-color: #f9f9f9;
     display: inline-block;
     width: auto;
-    margin-top: 10px; }
+    margin-top: 10px;
+    transition: all 0.2s linear 0.2s; }
     nav a:hover, nav a.active {
       background-color: #ffff00;
       text-decoration: none;
-      color: #009688; }
+      color: #009688;
+      border-bottom: 0; }
