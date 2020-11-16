@@ -5681,7 +5681,7 @@ main {
       margin: 9px 0 0 0;
       font-weight: 100; }
     #pinnedProjectsList section .project-body div:last-child {
-      margin: 9px 0 0 0; }
+      margin: 9px 0 16px 0; }
       #pinnedProjectsList section .project-body div:last-child div.col-xs-8.text-left {
         padding-left: 0; }
         #pinnedProjectsList section .project-body div:last-child div.col-xs-8.text-left a {
@@ -5690,7 +5690,7 @@ main {
           padding: 9px 16px 6px 1px;
           border-radius: 6px;
           display: inline-block;
-          margin: 2px 0 9px 0;
+          margin: 2px 0 0 0;
           text-decoration: none;
           transition: all 0.2s linear 0.2s; }
           #pinnedProjectsList section .project-body div:last-child div.col-xs-8.text-left a:hover, #pinnedProjectsList section .project-body div:last-child div.col-xs-8.text-left a:focus {
