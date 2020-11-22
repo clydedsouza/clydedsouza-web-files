@@ -5764,7 +5764,8 @@ main {
     min-height: 180px;
     border-radius: 120px;
     background-size: cover !important;
-    border: 6px solid #ffff00; }
+    border: 6px solid #ffff00;
+    cursor: pointer; }
     @media (max-width: 799px) {
       #sidebar .sidebar-background {
         width: 120px;
